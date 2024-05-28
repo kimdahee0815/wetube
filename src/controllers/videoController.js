@@ -33,9 +33,9 @@ export const trending = (req, res) => {
     return res.render("home", { pageTitle: "Home", fakeUser, videos });
 };
 
-export const see = (req, res) => res.render("watch", { pageTitle: "Watch" });
+export const see = (req, res) => res.render("watch", { pageTitle: "Watch", fakeUser });
 
-export const edit = (req, res) => res.render("edit", { pageTitle: "Edit" });
+export const edit = (req, res) => res.render("edit", { pageTitle: "Edit", fakeUser });
 
 export const search = (req, res) => res.send("Search Video");
 

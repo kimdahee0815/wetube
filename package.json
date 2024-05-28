@@ -1,31 +1,31 @@
 {
-  "name": "wetube",
-  "version": "1.0.0",
-  "description": "The best way to watch videos!!",
-  "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kimdahee0815/wetube-reloaded.git"
-  },
-  "author": "Dahee kIm<billionairedahee@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kimdahee0815/wetube-reloaded/issues"
-  },
-  "homepage": "https://github.com/kimdahee0815/wetube-reloaded#readme",
-  "dependencies": {
-    "express": "^4.19.2",
-    "mongoose": "^8.4.0",
-    "morgan": "^1.10.0",
-    "pug": "^3.0.3"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.24.6",
-    "@babel/node": "^7.24.6",
-    "@babel/preset-env": "^7.24.6",
-    "nodemon": "^3.1.1"
-  }
+    "name": "wetube",
+    "version": "1.0.0",
+    "description": "The best way to watch videos!!",
+    "scripts": {
+        "dev": "nodemon --exec babel-node src/init.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kimdahee0815/wetube-reloaded.git"
+    },
+    "author": "Dahee kIm<billionairedahee@gmail.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/kimdahee0815/wetube-reloaded/issues"
+    },
+    "homepage": "https://github.com/kimdahee0815/wetube-reloaded#readme",
+    "dependencies": {
+        "express": "^4.19.2",
+        "mongoose": "^8.4.0",
+        "morgan": "^1.10.0",
+        "pug": "^3.0.3"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.24.6",
+        "@babel/node": "^7.24.6",
+        "@babel/preset-env": "^7.24.6",
+        "nodemon": "^3.1.1"
+    }
 }

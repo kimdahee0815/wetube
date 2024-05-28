@@ -1,11 +1,8 @@
 extends base
 
 block content   
-    h1 #{video.title}!
+    div
+        p=video.description
+        small=video.createdAt
     a(href=`${video.id}/edit`) Edit Video &rarr;
-    div         
-        ul  
-            li #{video.rating} / 5
-            li #{video.comments} comments.
-            li Posted #{video.createdAt}
-            li #{video.views} #{video.views === 1? "view" : "views"}
+    

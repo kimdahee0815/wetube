@@ -5,7 +5,11 @@ html(lang='ko')
         link(rel="stylesheet" href="https://unpkg.com/mvp.css")
     body 
         header
-            block header  
+            nav     
+                ul  
+                    li 
+                        a(href="/") Home
+                        block header  
             h1=pageTitle
 
         main

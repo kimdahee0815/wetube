@@ -32,8 +32,33 @@ export const getEdit = (req, res) => {
     return res.render("edit-profile", { pageTitle: "Edit Profile" });
 };
 
-export const postEdit = (req, res) => {
-    return res.render("edit-profile", { pageTitle: "Edit Profile" });
+export const postEdit = async (req, res) => {
+    const {
+        session: {
+            user: { _id, username: sessionUsername, email: sessionEmail },
+        },
+        body: { name, email, username, location },
+    } = req;
+
+    let exists = undefined;
+    //change username or email, verify same username or email
+    if (sessionUsername !== username || sessionEmail !== email) {
+        exists = await User.exists({ $and: [{ _id: { $ne: _id } }, { $or: [{ username }, { email }] }] });
+    }
+    //exists can be undefined or false
+    if (!exists) {
+        const updatedUser = await User.findByIdAndUpdate(_id, { name, email, username, location }, { new: true });
+        // req.session.user = {
+        //     ...req.session.user,
+        //     name,
+        //     email,
+        //     username,
+        //     location,
+        // };
+        req.session.user = updatedUser;
+    }
+
+    return res.redirect("/users/edit");
 };
 
 export const getLogin = (req, res) => res.render("login", { pageTitle: "Login" });

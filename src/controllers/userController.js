@@ -68,8 +68,34 @@ export const getChangePassword = (req, res) => {
     return res.render("users/change-password", { pageTitle: "Change Password" });
 };
 
-export const postChangePassword = (req, res) => {
-    return res.redirect("/");
+export const postChangePassword = async (req, res) => {
+    const {
+        session: {
+            user: { _id, password },
+        },
+        body: { oldPassword, newPassword, newPasswordConfirmation },
+    } = req;
+    console.log(password);
+    console.log(oldPassword);
+    const ok = await bcrypt.compare(oldPassword, password);
+    if (!ok) {
+        return res.status(400).render("users/change-password", {
+            pageTitle: "Change Password",
+            errorMessage: "The current Password is incorrect.",
+        });
+    }
+    if (newPassword !== newPasswordConfirmation) {
+        return res.status(400).render("users/change-password", {
+            pageTitle: "Change Password",
+            errorMessage: "The new password does not match the confirmation.",
+        });
+    }
+    const user = await User.findById(_id);
+    console.log(user.password);
+    user.password = newPassword;
+    await user.save();
+    req.session.user.password = user.password;
+    return res.redirect("/users/logout");
 };
 
 export const getLogin = (req, res) => res.render("login", { pageTitle: "Login" });

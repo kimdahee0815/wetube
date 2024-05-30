@@ -41,11 +41,11 @@ export const postEdit = async (req, res) => {
     } = req;
 
     let exists = undefined;
-    //change username or email, verify same username or email
+    //if username or email changed, verify same username or email
     if (sessionUsername !== username || sessionEmail !== email) {
         exists = await User.exists({ $and: [{ _id: { $ne: _id } }, { $or: [{ username }, { email }] }] });
     }
-    //exists can be undefined or false
+    //exists can be undefined(username or email is not changed) or false(username or email is changed but can't find same username/email)
     if (!exists) {
         const updatedUser = await User.findByIdAndUpdate(_id, { name, email, username, location }, { new: true });
         // req.session.user = {
@@ -57,7 +57,7 @@ export const postEdit = async (req, res) => {
         // };
         req.session.user = updatedUser;
     }
-
+    //same username / email
     return res.redirect("/users/edit");
 };
 

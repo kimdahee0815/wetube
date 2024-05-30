@@ -35,9 +35,10 @@ export const getEdit = (req, res) => {
 export const postEdit = async (req, res) => {
     const {
         session: {
-            user: { _id, username: sessionUsername, email: sessionEmail },
+            user: { _id, username: sessionUsername, email: sessionEmail, avatarUrl },
         },
         body: { name, email, username, location },
+        file,
     } = req;
 
     let exists = undefined;
@@ -47,7 +48,11 @@ export const postEdit = async (req, res) => {
     }
     //exists can be undefined(username or email is not changed) or false(username or email is changed but can't find same username/email)
     if (!exists) {
-        const updatedUser = await User.findByIdAndUpdate(_id, { name, email, username, location }, { new: true });
+        const updatedUser = await User.findByIdAndUpdate(
+            _id,
+            { name, email, username, location, avatarUrl: file ? file.path : avatarUrl },
+            { new: true }
+        );
         // req.session.user = {
         //     ...req.session.user,
         //     name,
@@ -103,6 +108,7 @@ export const getLogin = (req, res) => res.render("login", { pageTitle: "Login" }
 export const postLogin = async (req, res) => {
     const { username, password } = req.body;
     const pageTitle = "Login";
+
     //check if account exists
     const user = await User.findOne({ username, socialOnly: false });
     if (!user)

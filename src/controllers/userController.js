@@ -29,7 +29,7 @@ export const postJoin = async (req, res) => {
 };
 
 export const getEdit = (req, res) => {
-    return res.render("edit-profile", { pageTitle: "Edit Profile" });
+    return res.render("users/edit-profile", { pageTitle: "Edit Profile" });
 };
 
 export const postEdit = async (req, res) => {
@@ -59,6 +59,17 @@ export const postEdit = async (req, res) => {
     }
     //same username / email
     return res.redirect("/users/edit");
+};
+
+export const getChangePassword = (req, res) => {
+    if (req.session.user.socialOnly) {
+        return res.redirect("/");
+    }
+    return res.render("users/change-password", { pageTitle: "Change Password" });
+};
+
+export const postChangePassword = (req, res) => {
+    return res.redirect("/");
 };
 
 export const getLogin = (req, res) => res.render("login", { pageTitle: "Login" });

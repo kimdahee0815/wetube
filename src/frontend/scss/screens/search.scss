@@ -1,0 +1,18 @@
+.search__form {
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    button {
+        all: unset;
+    }
+    button {
+        position: absolute;
+        right: 50px;
+        font-size: 20px;
+        background-color: rgba(0, 0, 0, 0);
+        text-align: center;
+        cursor: pointer;
+    }
+}

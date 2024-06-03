@@ -3,7 +3,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 100px;
+    padding: 0 100px 100px;
+    #videoPlayBtn {
+        // display:none;
+        position: absolute;
+        top: 10;
+        left: 100;
+        z-index: 2;
+        width: 30%;
+        height: 30%;
+        background: rgba(0, 0, 0, 0.7);
+        opacity: 0;
+        // visibility: hidden;
+        transition: 0.3s linear;
+    }
     #videoPlayBtnContainer {
         position: relative;
         .video {
@@ -12,18 +25,6 @@
             cursor: pointer;
             justify-content: center;
         }
-        // #videoPlayBtn {
-        //     position: fixed;
-        //     top: 0;
-        //     left: 0;
-        //     z-index: 2;
-        //     width: 100%;
-        //     height: 100%;
-        //     background: rgba(0, 0, 0, 0.7);
-        //     opacity: 0;
-        //     // visibility: hidden;
-        //     transition: 0.3s linear;
-        // }
     }
 
     .videoControls {

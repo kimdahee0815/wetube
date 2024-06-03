@@ -2,10 +2,10 @@ extends ../base
 
 block content   
     div#videoContainer.videoContainer
+        i.fas.fa-regular.fa-play#videoPlayBtn
         div#videoPlayBtnContainer
             video(src="/"+video.fileUrl).video
-            div
-                i.fas.fa-regular.fa-play#videoPlayBtn
+            
         div#videoControls.videoControls
             div#play 
                 i.fas.fa-regular.fa-play#playBtnIcon

@@ -10,25 +10,29 @@ const timeline = document.getElementById("timeline");
 const fullScreenBtn = document.getElementById("fullScreenBtn");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
+const videoPlayBtn = document.getElementById("videoPlayBtn");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
-console.log(playBtnIcon);
+
 const handlePlayClick = (e) => {
     //if video is playing, pause it
     // else play the video.
-    if (video.paused) {
-        video.play();
-        if (e.target === video) {
+    if (e.target.classList.contains("video") || e.target.classList.contains("fa-play")) {
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
         }
-    } else {
-        video.pause();
-        if (e.target === video) {
-        }
+        playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-stop";
+        videoPlayBtn.classList = video.paused ? "fas fa-pause showing fadeout" : "fas fa-play showing fadeout";
+        setTimeout(() => {
+            videoPlayBtn.classList.remove("fadeout");
+            videoPlayBtn.classList.remove("showing");
+        }, 1000);
     }
-    playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-stop";
 };
 
 const handleMute = (e) => {
@@ -100,10 +104,16 @@ const handleMouseMove = () => {
         controlsMovementTimeout = null;
     }
     videoControls.classList.add("showing");
-    controlsMovementTimeout = setTimeout(hideControls, 3000);
+    videoPlayBtn.classList = video.paused ? "fas fa-play showing" : "fas fa-pause showing";
+    controlsMovementTimeout = setTimeout(function () {
+        hideControls();
+        hidePlayBtn();
+    }, 3000);
 };
 
 const hideControls = () => videoControls.classList.remove("showing");
+
+const hidePlayBtn = () => videoPlayBtn.classList.remove("showing");
 
 const handleMouseLeave = () => {
     controlsTimeout = setTimeout(hideControls, 3 * 1000);
@@ -111,7 +121,7 @@ const handleMouseLeave = () => {
 
 video.readyState ? handleLoadedMetadata() : video.addEventListener("loadedmetadata", handleLoadedMetadata);
 // video.addEventListener("loadedmetadata", handleLoadedMetadata);
-playBtnIcon.addEventListener("click", handlePlayClick);
+videoContainer.addEventListener("click", handlePlayClick);
 muteBtnIcon.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("timeupdate", handleTimeupdate);
@@ -119,4 +129,3 @@ timeline.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullScreen);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
-video.addEventListener("click", handlePlayClick);

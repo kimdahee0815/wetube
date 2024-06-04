@@ -3,19 +3,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 0 100px 100px;
     #videoPlayBtn {
-        // display:none;
+        display: none;
         position: absolute;
         top: 10;
-        left: 100;
+        left: 350;
         z-index: 2;
-        width: 30%;
-        height: 30%;
+        width: 100px;
+        height: 100px;
         background: rgba(0, 0, 0, 0.7);
-        opacity: 0;
+        opacity: 1;
+        font-size: 4.2em;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 1.5em;
         // visibility: hidden;
         transition: 0.3s linear;
+
+        cursor: pointer;
     }
     #videoPlayBtnContainer {
         position: relative;
@@ -28,7 +35,7 @@
     }
 
     .videoControls {
-        display: grid;
+        display: none;
         grid-template-columns: auto auto 1fr 100px auto auto;
         // justify-content: space-around;
         position: absolute;
@@ -71,4 +78,15 @@
 }
 .showing {
     display: grid !important;
+}
+.fadeout {
+    animation: fadeout 1s forwards;
+}
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }

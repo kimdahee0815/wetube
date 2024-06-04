@@ -1,7 +1,7 @@
 extends ../base
 
 block content   
-    div#videoContainer.videoContainer
+    div#videoContainer(data-videoId=video._id).videoContainer
         i.fas.fa-regular.fa-play#videoPlayBtn
         div#videoPlayBtnContainer
             video(src="/"+video.fileUrl).video

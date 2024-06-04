@@ -28,16 +28,7 @@ const handlePlayClick = (e) => {
         } else {
             video.pause();
         }
-        // if (controlVideoBtnTimeout) {
-        //     clearTimeout(controlVideoBtnTimeout);
-        //     controlVideoBtnTimeout = null;
-        // }
-        // videoPlayBtn.classList.toggle("showing", false);
-        // videoPlayBtn.classList.toggle("fadeout", false);
-        // if (videoPlayBtn.classList.contains("showing")) {
-        //     console.log("iuii");
-        //     videoPlayBtn.classList = video.paused ? "fas fa-pause" : "fas fa-play";
-        // }
+
         playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
         videoPlayBtn.classList = video.paused ? "fas fa-pause showing fadeout" : "fas fa-play showing fadeout";
 

@@ -14,6 +14,7 @@ const videoPlayBtn = document.getElementById("videoPlayBtn");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
+let controlVideoBtnTimeout = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
 
@@ -26,12 +27,16 @@ const handlePlayClick = (e) => {
         } else {
             video.pause();
         }
+        if (controlVideoBtnTimeout) {
+            clearTimeout(controlVideoBtnTimeout);
+            controlVideoBtnTimeout = null;
+        }
         playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-stop";
         videoPlayBtn.classList = video.paused ? "fas fa-pause showing fadeout" : "fas fa-play showing fadeout";
-        setTimeout(() => {
+        controlVideoBtnTimeout = setTimeout(() => {
             videoPlayBtn.classList.remove("fadeout");
             videoPlayBtn.classList.remove("showing");
-        }, 1000);
+        }, 500);
     }
 };
 

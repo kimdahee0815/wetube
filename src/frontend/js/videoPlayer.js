@@ -16,28 +16,41 @@ let controlsTimeout = null;
 let controlsMovementTimeout = null;
 let controlVideoBtnTimeout = null;
 let volumeValue = 0.5;
+let space = null;
 video.volume = volumeValue;
 
 const handlePlayClick = (e) => {
     //if video is playing, pause it
     // else play the video.
-    if (e.target.classList.contains("video") || e.target.classList.contains("fa-play")) {
+    if (e.target.classList.contains("video") || e.target.classList.contains("fa-play") || e.code === "Space") {
         if (video.paused) {
             video.play();
         } else {
             video.pause();
         }
-        if (controlVideoBtnTimeout) {
-            clearTimeout(controlVideoBtnTimeout);
-            controlVideoBtnTimeout = null;
-        }
-        playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-stop";
+        // if (controlVideoBtnTimeout) {
+        //     clearTimeout(controlVideoBtnTimeout);
+        //     controlVideoBtnTimeout = null;
+        // }
+        // videoPlayBtn.classList.toggle("showing", false);
+        // videoPlayBtn.classList.toggle("fadeout", false);
+        // if (videoPlayBtn.classList.contains("showing")) {
+        //     console.log("iuii");
+        //     videoPlayBtn.classList = video.paused ? "fas fa-pause" : "fas fa-play";
+        // }
+        playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
         videoPlayBtn.classList = video.paused ? "fas fa-pause showing fadeout" : "fas fa-play showing fadeout";
+
         controlVideoBtnTimeout = setTimeout(() => {
             videoPlayBtn.classList.remove("fadeout");
             videoPlayBtn.classList.remove("showing");
-        }, 500);
+        }, 400);
     }
+};
+
+const handlePlayBtnRemove = () => {
+    videoPlayBtn.classList.remove("fadeout");
+    videoPlayBtn.classList.remove("showing");
 };
 
 const handleMute = (e) => {
@@ -127,6 +140,8 @@ const handleMouseLeave = () => {
 video.readyState ? handleLoadedMetadata() : video.addEventListener("loadedmetadata", handleLoadedMetadata);
 // video.addEventListener("loadedmetadata", handleLoadedMetadata);
 videoContainer.addEventListener("click", handlePlayClick);
+// videoPlayBtn.addEventListener("animationend", handlePlayBtnRemove);
+window.addEventListener("keydown", handlePlayClick);
 muteBtnIcon.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("timeupdate", handleTimeupdate);

@@ -23,15 +23,22 @@ block content
             div 
                 div#fullScreen
                     i.fas.fa-expand#fullScreenBtn
-    div.video__data
-        p.video__title=video.title
-        small.video__owner Uploaded by 
-            a(href=`/users/${video.owner._id}`)=video.owner.name
-        small.video__createdAt=video.createdAt
-        if String(video.owner._id) === String(loggedInUser._id)
-            br
-            a(href=`${video.id}/edit`) Edit Video &rarr;
-            br
-            a(href=`${video.id}/delete`) Delete Video &rarr;
+        div.video__data
+            p.video__title=video.title
+            small.video__owner Uploaded by 
+                a(href=`/users/${video.owner._id}`)=video.owner.name
+            div.video__createdAt=new Date(video.createdAt).toLocaleDateString('ko-KR',{ year: "numeric", month: "numeric", day: "numeric", weekday: "long" })
+            if String(video.owner._id) === String(loggedInUser._id)
+                br
+                a(href=`${video.id}/edit`) Edit Video &rarr;
+                br
+                a(href=`${video.id}/delete`) Delete Video &rarr;
+
+    if loggedIn
+        div.video__comments 
+            form.video__comment-form#commentForm
+                textarea(cols="30",rows="10",placeholder="Write a nice Comment..")
+                button Add Comment
 block scripts 
     script(src="/assets/js/videoPlayer.js")
+    script(src="/assets/js/commentSection.js")

@@ -32,6 +32,7 @@ export const getEdit = async (req, res) => {
         return res.render("404", { pageTitle: "Video Not Found" });
     }
     if (String(video.owner) !== String(_id)) {
+        req.flash("error", "You are not the owner of the video");
         return res.status(403).redirect("/");
     }
     return res.render("videos/edit", { pageTitle: `Editing: ${video.title}`, video });
@@ -43,26 +44,30 @@ export const postEdit = async (req, res) => {
     const {
         user: { _id },
     } = req.session;
-    const video = await Video.exists({ _id: id });
+    const video = await Video.findById(id).populate("owner");
     const { title, description, hashtags } = req.body;
-
+    console.log(video);
     if (!video) {
         return res.status(404).render("404", { pageTitle: "Video Not Found" });
     }
-    if (String(video.owner) !== String(_id)) {
+    if (String(video.owner._id) !== String(_id)) {
+        req.flash("error", "You are not the owner of the video");
         return res.status(403).redirect("/");
     }
-    console.log(title, description, hashtags);
+
     await Video.findByIdAndUpdate(id, {
         title,
         description,
         fileUrl: file ? file.path : video.fileUrl,
         hashtags: Video.formatHashtags(hashtags),
     });
+
     // video.title = title;
     // video.description = description;
     // video.hashtags = hashtags.split(",").map((word) => (word.startsWith("#") ? word.trim() : `#${word.trim()}`));
     // await video.save();
+    console.log("Abccccccccc");
+    req.flash("success", "Changes Done!");
     return res.redirect(`/videos/${id}`);
 };
 
@@ -73,7 +78,6 @@ export const getUpload = (req, res) => {
 export const postUpload = async (req, res) => {
     //here we will add a video to videos array
     try {
-        console.log("abcdabcd");
         const {
             body: { title, description, hashtags },
             files: { video, thumb },
@@ -81,7 +85,6 @@ export const postUpload = async (req, res) => {
                 user: { _id },
             },
         } = req;
-        console.log(req.files);
         const newVideo = await Video.create({
             fileUrl: video[0].path,
             thumbUrl: thumb[0].destination + thumb[0].filename,

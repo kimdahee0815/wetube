@@ -1,6 +1,6 @@
 import User from "../models/User";
 import Video from "../models/Video";
-
+import Comment from "../models/Comment";
 export const home = async (req, res) => {
     try {
         const videos = await Video.find({}).sort({ createdAt: "desc" }).populate("owner");
@@ -149,8 +149,18 @@ export const registerView = async (req, res) => {
 };
 
 export const createComment = async (req, res) => {
-    console.log(req.body);
-    console.log(req.body.text);
-    console.log(req.params);
-    return res.end();
+    const {
+        session: { user },
+        body: { text },
+        params: { id },
+    } = req;
+    const video = await Video.findById(id);
+    if (!video) return res.sendStatus(400);
+    const comment = await Comment.create({
+        text,
+        owner: user._id,
+        video: video._id,
+    });
+
+    return res.sendStatus(201);
 };

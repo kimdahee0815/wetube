@@ -1,7 +1,7 @@
 extends ../base
 
 block content   
-    div#videoContainer(data-videoId=video._id).videoContainer
+    div#videoContainer(data-videoId=video._id,data-video=video).videoContainer
         i.fas.fa-regular.fa-play#videoPlayBtn
         div#videoPlayBtnContainer
             video(src="/"+video.fileUrl).video
@@ -39,12 +39,14 @@ block content
             form.video__comment-form#commentForm
                 textarea(cols="30",rows="10",placeholder="Write a nice Comment..")
                 button Add Comment
-    div.video__comments 
-        ul 
+    div.video__comments__view(data-userId=loggedInUser._id)
+        ul
             each comment in video.comments.reverse()
                 li.video__comment
-                    i.fas.fa-comment  
-                    span  #{comment.text}
+                    i.fas.fa-comment   
+                    span.text__comment  #{comment.text} 
+                    if String(comment.owner) === String(loggedInUser._id) 
+                        span.remove__comment(data-comment=comment) ❌
 block scripts 
     script(src="/assets/js/videoPlayer.js")
     script(src="/assets/js/commentSection.js")

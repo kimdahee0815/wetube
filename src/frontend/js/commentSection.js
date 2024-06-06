@@ -2,8 +2,9 @@ const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
 const videoComments = document.querySelector(".video__comments__view ul");
 const videoId = videoContainer.dataset.videoid;
+let currentComment;
 
-const addComment = (text, comment) => {
+const addComment = (text) => {
     const newComment = document.createElement("li");
     newComment.className = "video__comment";
     const icon = document.createElement("icon");
@@ -14,7 +15,7 @@ const addComment = (text, comment) => {
     const spanRemove = document.createElement("span");
     spanRemove.innerText = "❌";
     spanRemove.className = "remove__comment";
-    spanRemove.dataset.commentId = comment._id;
+    spanRemove.dataset.comment = JSON.stringify(currentComment);
     newComment.appendChild(icon);
     newComment.appendChild(span);
     newComment.appendChild(spanRemove);
@@ -39,10 +40,9 @@ const handleSubmit = async (e) => {
         body: JSON.stringify({ text }),
     });
     textarea.value = "";
-    const resJson = await res.json();
-    console.log(resJson);
+    currentComment = await res.json();
     if (res.status === 201) {
-        addComment(text, resJson);
+        addComment(text);
     }
 };
 
@@ -67,7 +67,6 @@ const handleDeleteComment = async (e) => {
                 },
                 body: JSON.stringify({ commentId }),
             });
-            console.log(res);
         }
     }
 };

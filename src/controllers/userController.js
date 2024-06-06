@@ -180,7 +180,7 @@ export const finishGithubLogin = async (req, res) => {
         if (!emailObj) {
             return res.redirect("/login");
         }
-        const user = await User.findOne({ email: emailObj.email });
+        let user = await User.findOne({ email: emailObj.email });
         if (!user) {
             //create account
             user = await User.create({

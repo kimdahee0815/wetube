@@ -17,8 +17,10 @@ header
                     a(href=`/users/${loggedInUser._id}`)
                         if loggedInUser.avatarUrl === ""
                             span 😊
-                        else    
-                            img.header_avatar(src='/'+loggedInUser.avatarUrl)
+                        else if loggedInUser.avatarUrl.startsWith('uploads')   
+                            img.header_avatar(src=`/${loggedInUser.avatarUrl}`)
+                        else 
+                            img.header_avatar(src=`${loggedInUser.avatarUrl}`)
                         
             else
                 li 

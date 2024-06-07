@@ -5,6 +5,7 @@ import morgan from "morgan";
 import session from "express-session";
 import flash from "express-flash";
 import MongoStore from "connect-mongo";
+import cors from "cors";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
@@ -21,6 +22,13 @@ app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); //change JSONstring to javascript object
+app.use(
+    cors({
+        origin: "*",
+        credentials: true,
+        optionsSuccessStatus: 200,
+    })
+);
 
 app.use(
     session({
@@ -34,11 +42,11 @@ app.use(
     })
 );
 
-app.use((req, res, next) => {
-    res.header("Cross-Origin-Embedder-Policy", "require-corp");
-    res.header("Cross-Origin-Opener-Policy", "same-origin");
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header("Cross-Origin-Embedder-Policy", "require-corp");
+//     res.header("Cross-Origin-Opener-Policy", "same-origin");
+//     next();
+// });
 // app.use((req, res, next) => {
 //     req.sessionStore.all((error, sessions) => {
 //         console.log(sessions);

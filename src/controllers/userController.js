@@ -48,6 +48,7 @@ export const postEdit = async (req, res) => {
     if (sessionUsername !== username || sessionEmail !== email) {
         exists = await User.exists({ $and: [{ _id: { $ne: _id } }, { $or: [{ username }, { email }] }] });
     }
+
     //exists can be undefined(username or email is not changed) or false(username or email is changed but can't find same username/email)
     if (!exists) {
         const updatedUser = await User.findByIdAndUpdate(
@@ -64,6 +65,7 @@ export const postEdit = async (req, res) => {
         //     location,
         // };
         req.session.user = updatedUser;
+
         return res.redirect(`/users/${_id}`);
     }
     //same username / email
@@ -225,5 +227,7 @@ export const see = async (req, res) => {
     //const videos = await Video.find({ owner: id });
     //const videos = await User.findById(id).populate("videos");
     // console.log(videos);
+
+    console.log(res);
     return res.render("users/profile", { pageTitle: `${user.name}'s Profile`, user });
 };

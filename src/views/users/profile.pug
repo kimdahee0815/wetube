@@ -3,12 +3,10 @@ include ../mixins/video
 
 block content 
     div.profile__data
-        if !user.avatarUrl
-            img.avatar(src='/uploads/avatars/135a6adc33a519d6c6dace112ed52f3a')
-        else if user.avatarUrl.startsWith('uploads')   
-            img.avatar(src=`/${user.avatarUrl}`)
+        if user.avatarUrl === ""
+            img.avatar(src='https://wetube-fly-2024-update.s3.ap-northeast-2.amazonaws.com/avatars/6662b1f06ae58401b38fa60e/1717745597527')
         else 
-            img.avatar(src=`${loggedInUser.avatarUrl}`)
+            img.avatar(src=`${user.avatarUrl}`)
         h3=user.name
     div.video__grid
         each video in user.videos 

@@ -67,7 +67,6 @@ export const postEdit = async (req, res) => {
     // video.description = description;
     // video.hashtags = hashtags.split(",").map((word) => (word.startsWith("#") ? word.trim() : `#${word.trim()}`));
     // await video.save();
-    console.log("Abccccccccc");
     req.flash("success", "Changes Done!");
     return res.redirect(`/videos/${id}`);
 };
@@ -87,8 +86,8 @@ export const postUpload = async (req, res) => {
             },
         } = req;
         const newVideo = await Video.create({
-            fileUrl: video[0].path,
-            thumbUrl: thumb[0].destination + thumb[0].filename,
+            fileUrl: video[0].location,
+            thumbUrl: thumb[0].location,
             title,
             description,
             owner: _id,

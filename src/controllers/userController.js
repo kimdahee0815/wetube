@@ -21,6 +21,7 @@ export const postJoin = async (req, res) => {
             email,
             password,
             location,
+            avatarUrl: "",
         });
         return res.redirect("/login");
     } catch (error) {
@@ -40,6 +41,7 @@ export const postEdit = async (req, res) => {
         body: { name, email, username, location },
         file,
     } = req;
+    console.log(file);
 
     let exists = undefined;
     //if username or email changed, verify same username or email
@@ -50,9 +52,10 @@ export const postEdit = async (req, res) => {
     if (!exists) {
         const updatedUser = await User.findByIdAndUpdate(
             _id,
-            { name, email, username, location, avatarUrl: file ? file.path : avatarUrl },
+            { name, email, username, location, avatarUrl: file ? file.location : avatarUrl },
             { new: true }
         );
+        console.log(updatedUser);
         // req.session.user = {
         //     ...req.session.user,
         //     name,
@@ -61,6 +64,7 @@ export const postEdit = async (req, res) => {
         //     location,
         // };
         req.session.user = updatedUser;
+        return res.redirect(`/users/${_id}`);
     }
     //same username / email
     return res.redirect("/users/edit");

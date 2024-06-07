@@ -4,80 +4,104 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 100px 100px;
-    #videoPlayBtn {
-        display: none;
-        position: absolute;
-        top: 10;
-        left: 350;
-        z-index: 2;
-        width: 100px;
-        height: 100px;
-        background: rgba(0, 0, 0, 0.7);
-        opacity: 1;
-        font-size: 4.2em;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 1.5em;
-        // visibility: hidden;
-        transition: 0.3s linear;
+    padding: 0 100px 80px;
+    min-width: 450px;
 
-        cursor: pointer;
-    }
     #videoPlayBtnContainer {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 100px 80px;
+        min-width: 450px;
+        #videoPlayBtn {
+            display: none;
+            position: absolute;
+            top: 10;
+            left: 350;
+            z-index: 2;
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 1;
+            font-size: 4.2em;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 1.5em;
+            // visibility: hidden;
+            transition: 0.3s linear;
+
+            cursor: pointer;
+        }
         .video {
             width: 100%;
             height: 800px;
             cursor: pointer;
             justify-content: center;
         }
+        .videoControls {
+            display: none;
+            grid-template-columns: auto auto 1fr 100px 40px auto;
+            // justify-content: space-around;
+            position: absolute;
+            bottom: 30px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: rgba($color: #000000, $alpha: 0.8);
+            border-radius: 10px;
+            border: 1px solid rgba($color: #fff, $alpha: 0.2);
+            min-width: 30%;
+            width: 80%;
+            div,
+            input {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            input[type="range"] {
+                cursor: pointer;
+            }
+            #playBtnIcon {
+                cursor: pointer;
+            }
+
+            #time {
+                display: flex;
+                justify-content: center;
+            }
+            #mute {
+                display: flex;
+                cursor: pointer;
+                padding: 0 5px;
+                margin: 0 10px;
+            }
+
+            #fullScreenBtn {
+                cursor: pointer;
+            }
+            #timeline {
+                width: 100%;
+            }
+        }
     }
-
-    .videoControls {
-        display: none;
-        grid-template-columns: auto auto 1fr 100px 40px auto;
-        // justify-content: space-around;
-        position: absolute;
-        bottom: 50px;
-        margin: 0 auto;
-        padding: 10px;
-        background-color: rgba($color: #000000, $alpha: 0.8);
-        border-radius: 10px;
-        border: 1px solid rgba($color: #fff, $alpha: 0.2);
-        width: 80%;
-
-        div,
-        input {
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-        input[type="range"] {
-            cursor: pointer;
-        }
-        #playBtnIcon {
-            cursor: pointer;
-        }
-
-        #time {
-            display: flex;
-            justify-content: center;
-        }
-        #mute {
-            display: flex;
-            cursor: pointer;
-            padding: 0 5px;
-            margin: 0 10px;
-        }
-
-        #fullScreenBtn {
-            cursor: pointer;
-        }
-        #timeline {
+    .video__data {
+        display: flex;
+        flex-direction: column;
+        min-width: 450px;
+        padding: 0 100px 80px;
+        width: 100%;
+        max-width: 700px;
+        .video__title,
+        .video__createdAt,
+        .video__owner {
+            display: block;
             width: 100%;
+            text-align: left;
+            margin: 7px 10px;
         }
     }
 }
+
 .showing {
     display: grid !important;
 }
@@ -91,4 +115,7 @@
     to {
         opacity: 0;
     }
+}
+.video__comments__view {
+    min-width: 450px;
 }

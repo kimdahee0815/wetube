@@ -41,3 +41,17 @@ A full-stack video streaming platform inspired by YouTube, developed using **Nod
   - Token generation on login
   - Protected routes (upload, comment, profile, etc.)
   - Token refresh and logout flows
+
+---
+
+## 🚀 Live Demo
+
+👉 [Upload Your Videos on Wetube](https://wetube-reloaded-2024-daheekim.fly.dev/)
+
+---
+
+## 🖼 Preview
+
+
+
+---

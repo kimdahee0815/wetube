@@ -32,6 +32,8 @@ A full-stack video streaming platform inspired by YouTube, developed using **Nod
 - ⚙️ **Webpack Bundling**  
   Optimized JS/CSS bundling and asset management for production.
 
+---
+
 ## 🔒 Security Features
 
 - 🔐 **GitHub OAuth**  

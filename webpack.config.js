@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const CopyPlugin = require('copy-webpack-plugin');
 
 const BASE_JS = "./src/frontend/js/";
 
@@ -13,6 +14,11 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: "css/styles.css",
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: "src/frontend/youtube.ico", to: "youtube.ico" }
+            ],
         }),
     ],
 

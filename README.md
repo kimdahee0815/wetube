@@ -1,4 +1,4 @@
-# <img src="/frontend/youtube.ico" alt="Wetube" width="40" height="40"> Wetube – YouTube-Style Video Sharing Platform 🎥
+# <img src="src/frontend/youtube.ico" alt="Wetube" width="40" height="40"> Wetube – YouTube-Style Video Sharing Platform 🎥
 
 A full-stack video streaming platform inspired by YouTube, developed using **Node.js**, **Express**, **MongoDB**, and **Pug** for server-side rendering. It replicates core YouTube functionalities such as video browsing, playback, uploading, and user interaction. The app includes secure media handling with AWS S3, real-time commenting, and now features JWT-based authentication** alongside GitHub OAuth for secure, flexible login.
 

@@ -7,18 +7,35 @@ let currentComment;
 const addComment = (text) => {
     const newComment = document.createElement("li");
     newComment.className = "video__comment";
+
     const icon = document.createElement("icon");
     icon.className = "fas fa-comment";
+
+    const dateSpan = document.createElement("span");
+    dateSpan.className = "comment__date";
+    dateSpan.innerText = new Date().toLocaleString("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false, 
+    });
+
     const span = document.createElement("span");
     span.innerText = ` ${text}`;
     span.className = "text__comment";
+
     const spanRemove = document.createElement("span");
     spanRemove.innerText = "❌";
     spanRemove.className = "remove__comment";
     spanRemove.dataset.comment = JSON.stringify(currentComment);
+
     newComment.appendChild(icon);
+    newComment.appendChild(dateSpan);
     newComment.appendChild(span);
     newComment.appendChild(spanRemove);
+
     videoComments.prepend(newComment);
 };
 

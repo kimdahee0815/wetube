@@ -1,21 +1,38 @@
 extends ../base
 
-block content 
-    div     
-        video#preview
-        button#actionBtn Start Recording
-    if errorMessage 
-        span=errorMessage 
+block content
+    .upload-wrapper
+        .upload-content
+            .video-section
+                h2 Upload Preview
+                video#preview(class="video-preview", controls)
+                button#actionBtn Start Recording
+                if errorMessage
+                    span.error-message= errorMessage
 
-    form(method="POST", enctype="multipart/form-data")
-        label(for="video") Video File  
-        input(type="file", accept="video/*",name="video", id="video", required)
-        label(for="thumb") Thumbnail File  
-        input(type="file", accept="image/*",name="thumb", id="thumb", required)
-        input(placeholder="Title", name="title", type="text", required, maxlength=80)
-        input(placeholder="Description", name="description", type="text", required, minlength=20)
-        input(placeholder="Hashtags, separated by comma.", name="hashtags", type="text", required)
-        input(type="submit", value="Upload Video")
+            .form-section
+                form(method="POST", enctype="multipart/form-data")
+                    h2 Upload Your Video
 
-block scripts 
+                    label(for="video") Video File
+                    input(type="file", accept="video/*", name="video", id="video", required)
+
+                    label(for="thumb") Thumbnail File
+                    input(type="file", accept="image/*", name="thumb", id="thumb", required)
+
+                    label(for="title") Title
+                    input(type="text", name="title", placeholder="Enter a title", required, maxlength="80")
+
+                    label(for="description") Description
+                    textarea(name="description", placeholder="Write a description", required, minlength="20")
+
+                    label(for="hashtags") Hashtags
+                    input(type="text", name="hashtags", placeholder="#funny, #vlog", required)
+
+                    label(for="uploadProgress") Upload Progress
+                    progress#uploadProgress(value="0", max="100") 0%
+
+                    input(type="submit", value="Upload Video")
+
+block scripts
     script(src="/assets/js/recorder.js")

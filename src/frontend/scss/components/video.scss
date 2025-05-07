@@ -22,16 +22,19 @@
 .video__comments__view {
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 20px;
     .video__comment {
-        display: flex;
-        margin-bottom: 10px;
-        padding: 10px;
         border-radius: 9999px;
-        background-color: white;
+        background-color: #f9f9f9;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 16px;
         color: black;
         .text__comment {
             flex-grow: 3;
@@ -41,5 +44,80 @@
             display: inline-block;
             cursor: pointer;
         }
+        .comment__time {
+            font-size: 12px;
+            color: #777;
+            white-space: nowrap;
+          }
+      
+          .comment__text {
+            font-size: 15px;
+            color: #444;
+            flex-grow: 1;
+            padding: 0 12px;
+            word-break: break-word;
+          }
+      
+          .remove__comment {
+            color: red;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: auto;
+      
+            &:hover {
+              text-decoration: underline;
+            }
+          }
     }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+    
+      .video__comment {
+        
+    
+        
+      }
 }
+
+.video__comment-form {
+    max-width: none;
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    textarea {
+      width: 80%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      resize: vertical;
+      outline: none;
+    }
+  
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+        height: fit-content;
+
+      &:hover {
+        background-color: #45a049;
+      }
+    }
+  }
+  

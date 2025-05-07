@@ -22,7 +22,7 @@ video.volume = volumeValue;
 const handlePlayClick = (e) => {
     //if video is playing, pause it
     // else play the video.
-    if (e.target.classList.contains("video") || e.target.classList.contains("fa-play") || e.code === "Space") {
+    if (e.target.classList.contains("video") || e.target.classList.contains("fa-play") || e.target.classList.contains("fa-pause") || e.code === "Space") {
         if (video.paused) {
             video.play();
         } else {

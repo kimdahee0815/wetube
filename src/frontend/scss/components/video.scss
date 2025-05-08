@@ -63,9 +63,11 @@
             cursor: pointer;
             font-size: 16px;
             margin-left: auto;
-      
+            transition: transform 0.2s ease;
+          
             &:hover {
-              text-decoration: underline;
+              transform: scale(1.1);
+              animation: bounce 0.4s ease;
             }
           }
     }
@@ -73,12 +75,6 @@
         list-style: none;
         padding: 0;
         margin: 0;
-      }
-    
-      .video__comment {
-        
-    
-        
       }
 }
 
@@ -147,23 +143,11 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
     position: relative;
     margin-bottom: 2rem; 
+    .form-title{
+      margin-bottom: 0;
+    }
   }
   
-  .video__form-header::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 3px;
-    background-color: #b00000;
-    margin: 0.6rem auto 0;
-    border-radius: 3px;
-    transition: width 0.4s ease; 
-  }
-  
-  .video__form-header:hover::after {
-    width: 50%; 
-    background-color: #b00000;
-  }
   
   .form-group {
     margin-bottom: 1.5rem;

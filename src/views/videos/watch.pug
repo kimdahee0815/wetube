@@ -24,7 +24,12 @@ block content
     div.video__data
         div.video__data__top
             div.video__info
-                p.video__title= video.title
+                div.video__title-hashtags
+                    p.video__title= video.title
+                    if video.hashtags.length
+                        ul.video__hashtags
+                            each tag in video.hashtags
+                                li.video__hashtag= tag
                 p.video__content= video.description
                     small.video__owner
                         | Uploaded by 

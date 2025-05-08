@@ -45,7 +45,7 @@
             display: none;
             grid-template-columns: auto auto 1fr 100px 40px auto;
             position: absolute;
-            bottom: 60px;
+            bottom: 20px;
             margin: 0 auto;
             padding: 10px;
             background-color: rgba($color: #000000, $alpha: 0.8);
@@ -117,11 +117,35 @@
         gap: 3rem;
       }
   
-      .video__title {
-        font-size: 3rem;
-        font-weight: bold;
-        color: #1e88e5;
-        margin-bottom: 2rem;
+      .video__title-hashtags {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      
+        .video__title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #1e88e5;
+            margin-bottom: 2rem;
+        }
+      
+        .video__hashtags {
+          display: flex;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+      
+          .video__hashtag {
+            background-color: rgba(0, 123, 255, 0.1);
+            color: #007bff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+          }
+        }
       }
   
       .video__owner {

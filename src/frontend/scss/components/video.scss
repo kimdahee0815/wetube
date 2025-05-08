@@ -162,6 +162,8 @@
   
     input[type="text"],
     input[type="file"],
+    input[type="email"],
+    input[type="password"],
     textarea {
       width: 100%;
       padding: 0.8rem;
@@ -179,6 +181,7 @@
   }
   
   #edit-btn {
+    margin-left: 3px;
     display: inline-block;
     padding: 0.8rem 1.5rem;
     background-color: #cc0000;  

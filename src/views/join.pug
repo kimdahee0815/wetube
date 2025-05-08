@@ -1,17 +1,21 @@
 extends base
 
-block content 
-    if errorMessage 
-        span=errorMessage
-    form(method='POST')
-        input(placeholder="name" , name="name" type="text", required)
-        input(placeholder="email" , name="email" type="email", required) 
-        input(placeholder="username" , name="username" type="text", required) 
-        input(placeholder="password" , name="password" type="password", required) 
-        input(placeholder="Confirm password" , name="password2" type="password", required) 
-        input(placeholder="location" , name="location" type="text", required)
-        input(type="submit", value="Join")
-        include partials/social-login
-    div.auth-switch
-        span Already Have an account? 
-        a(href="/login") Login Now! &rarr;
+block content
+    .page-container
+        .form-box
+            h2.form-title Create your account
+            if errorMessage 
+                span.error= errorMessage
+            form.form-join(method='POST')
+                input.input-field(type="text", name="name", placeholder="Name", required)
+                input.input-field(type="email", name="email", placeholder="Email", required)
+                input.input-field(type="text", name="username", placeholder="Username", required)
+                input.input-field(type="password", name="password", placeholder="Password", required)
+                input.input-field(type="password", name="password2", placeholder="Confirm Password", required)
+                input.input-field(type="text", name="location", placeholder="Location", required)
+                input.submit-btn(type="submit", value="Join")
+                include partials/social-login
+            .auth-switch
+                span Already have an account?
+                br
+                a.login-button(href="/login") Login Now →

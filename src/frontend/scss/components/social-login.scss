@@ -1,9 +1,147 @@
 .social__login {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 40px;
+    padding-top: 30px;
     margin-top: 30px;
     .social__btn--github {
         background-color: transparent;
         color: azure;
     }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+.page-container {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.form-box {
+  background-color: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  text-align: center;
+
+  .form-title {
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: rgba(204, 0, 0, 0.85); 
+    position: relative;
+    display: inline-block;
+  
+    &::after {
+      content: '';
+      display: block;
+      width: 50%;
+      height: 3px;
+      background: rgba(204, 0, 0, 0.4);
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+  
+    &:hover::after {
+      width: 70%;
+      background: rgba(204, 0, 0, 0.6);
+    }
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 0.75rem 0;
+    margin-bottom: 1.25rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    font-size: 1rem;
+    outline: none;
+
+    &:focus {
+      border-bottom: 2px solid #cc0000;
+    }
+  }
+
+  .submit-btn {
+    width:90%;
+    padding: 0.75rem;
+    background-color: #cc0000;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+
+    &:hover {
+      background-color: #b00000;
+    }
+  }
+}
+
+.auth-switch {
+  .login-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: rgba(0, 102, 204, 0.85); 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+  
+    &:hover {
+      background-color: rgba(0, 102, 204, 1); 
+    }
+  
+    &:active {
+      background-color: rgba(0, 82, 164, 1); 
+    }
+  }
+  
+      span {
+        color: rgba(0, 102, 204, 0.8); 
+        font-weight: 500;
+        position: relative;
+        display: inline-block;
+    
+        &::after {
+          content: '';
+          display: block;
+          width: 60%;
+          height: 2px;
+          background: rgba(0, 102, 204, 0.3);
+          margin: 0.4rem auto 0;
+          border-radius: 1px;
+          transition: width 0.3s ease, background 0.3s ease;
+        }
+    
+        &:hover::after {
+          width: 80%;
+          background: rgba(0, 102, 204, 0.5);
+        }
+      }
+}
+
+.error {
+  color: #cc0000;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  display: block;
+
+}
+.form-join{
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width:90%;
+    max-width: none;
 }

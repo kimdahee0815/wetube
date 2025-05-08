@@ -12,7 +12,7 @@ block content
 
             .form-section
                 form(method="POST", enctype="multipart/form-data")
-                    h2 Upload Your Video
+                    h2.upload-form-title Upload Your Video
 
                     label(for="video") Video File
                     input(type="file", accept="video/*", name="video", id="video", required)
@@ -24,7 +24,7 @@ block content
                     input(type="text", name="title", placeholder="Enter a title", required, maxlength="80")
 
                     label(for="description") Description
-                    textarea(name="description", placeholder="Write a description", required, minlength="20")
+                    textarea#description(name="description", placeholder="Write a description", required, minlength="20")
 
                     label(for="hashtags") Hashtags
                     input(type="text", name="hashtags", placeholder="#funny, #vlog", required)

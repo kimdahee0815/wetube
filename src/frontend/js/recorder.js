@@ -22,37 +22,45 @@ const downloadFile = (fileUrl, fileName) => {
     a.click();
 };
 
+const updateProgress = (val, text) => {
+    const progressBar = document.getElementById("uploadProgress");
+    progressBar.value = val;
+    progressBar.innerText = `${Math.round(val)}%`;
+    if (text) progressBar.dataset.label = text;
+};
+
 const handleDownload = async () => {
     actionBtn.removeEventListener("click", handleDownload);
     actionBtn.innerText = "Transcoding...";
     actionBtn.disabled = true;
 
+    const progressBar = document.getElementById("uploadProgress");
+    updateProgress(10, "Loading FFmpeg...");
+
     const ffmpeg = new FFmpeg();
     await ffmpeg.load();
 
+    updateProgress(30, "Writing input file...");
     await ffmpeg.writeFile(files.input, await fetchFile(videoFile));
 
+    updateProgress(50, "Converting to MP4...");
     await ffmpeg.exec(["-i", files.input, "-r", "60", files.output]);
 
-    await ffmpeg.exec(["-i", files.input, "-ss", "00:00:00", "-frames:V", "1", files.thumb]);
+    updateProgress(75, "Extracting thumbnail...");
+    await ffmpeg.exec(["-i", files.input, "-ss", "00:00:00", "-frames:v", "1", files.thumb]);
 
+    updateProgress(85, "Reading files...");
     const mp4File = await ffmpeg.readFile(files.output);
-
     const thumbFile = await ffmpeg.readFile(files.thumb);
 
-    console.log(mp4File);
-    console.log(mp4File.buffer);
-
     const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
-
     const thumbBlob = new Blob([thumbFile.buffer], { type: "image/jpg" });
 
     const mp4Url = URL.createObjectURL(mp4Blob);
-
     const thumbUrl = URL.createObjectURL(thumbBlob);
 
+    updateProgress(95, "Downloading...");
     downloadFile(mp4Url, "MyRecording.mp4");
-
     downloadFile(thumbUrl, "MyThumbnail.jpg");
 
     await ffmpeg.deleteFile(files.input);
@@ -62,6 +70,8 @@ const handleDownload = async () => {
     URL.revokeObjectURL(mp4Url);
     URL.revokeObjectURL(thumbUrl);
     URL.revokeObjectURL(videoFile);
+
+    updateProgress(100, "Done!");
 
     actionBtn.innerText = "Record Again";
     actionBtn.disabled = false;

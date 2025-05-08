@@ -121,3 +121,96 @@
     }
   }
   
+
+  .video__edit-form {
+    max-width: 700px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    .video-edit-form{
+      max-width: none;
+      width: 85%;
+    }
+  }
+  
+  .video__form-header {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #b00000;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    position: relative;
+    margin-bottom: 2rem; 
+  }
+  
+  .video__form-header::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background-color: #b00000;
+    margin: 0.6rem auto 0;
+    border-radius: 3px;
+    transition: width 0.4s ease; 
+  }
+  
+  .video__form-header:hover::after {
+    width: 50%; 
+    background-color: #b00000;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+    width: 95%;
+  
+    label {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      color: #333;
+    }
+  
+    input[type="text"],
+    input[type="file"],
+    textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.2s ease;
+  
+      &:focus {
+        border-color: #b00000;
+        outline: none;
+      }
+    }
+  }
+  
+  #edit-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #cc0000;  
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 95%;
+    text-align: center;
+    &:hover {
+      background-color: #b00000; 
+    }
+  
+    &:active {
+      background-color: #b00000; 
+    }
+  }

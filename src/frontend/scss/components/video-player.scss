@@ -342,6 +342,33 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
+        #recordingTimer {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 1rem;
+          font-weight: bold;
+          color: white;
+          background-color: rgba(0, 0, 0, 0.6);
+          padding: 0.4rem 0.8rem;
+          border-radius: 6px;
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-family: 'Courier New', monospace;
+          letter-spacing: 0.5px;
+        }
+        
+        #recordingTimer .dot {
+          width: 10px;
+          height: 10px;
+          background-color: #e53935;
+          border-radius: 50%;
+          animation: blink 1s step-start infinite;
+        }
+      
 
         h2 {
             margin-bottom: 1rem;
@@ -412,7 +439,7 @@
         }
 
         progress {
-            width: 95%;
+            width: 100%;
             height: 16px;
             margin-bottom: 1rem;
         }
@@ -426,7 +453,8 @@
             transition: background-color 0.3s;
             padding: 0.75rem;
             border-radius: 6px;
-
+            width: 100%;
+            text-align: center;
             &:hover {
                 background-color: #1d4ed8;
             }
@@ -451,7 +479,7 @@
     text-align: center;
     font-size: 2rem;
     font-weight: 700;
-    color: #b00000;
+    color: rgba(204, 0, 0, 0.85);
     padding: 1rem;
     background-color: #fff;
     border-radius: 8px;
@@ -476,10 +504,8 @@
   }
 }
 
-#description{
-    background-color: black;
-    margin-bottom: 5px;
-    font-size: 16px;
-    color: white;
-    
+@keyframes blink {
+  50% {
+    opacity: 0.3;
+  }
 }

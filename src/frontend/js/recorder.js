@@ -7,6 +7,8 @@ const video = document.getElementById("preview");
 let stream;
 let recorder;
 let videoFile;
+let seconds = 0;
+let timerInterval;
 
 const files = {
     input: "recording.webm",
@@ -84,6 +86,7 @@ const handleStop = () => {
     actionBtn.addEventListener("click", handleDownload);
 
     recorder.stop();
+    stopTimer();
 };
 
 const handleStart = () => {
@@ -91,25 +94,52 @@ const handleStart = () => {
     actionBtn.removeEventListener("click", handleStart);
     actionBtn.addEventListener("click", handleStop);
 
+    video.srcObject = stream;
+    video.play();             
+
     recorder = new window.MediaRecorder(stream, { mimeType: "video/webm" });
 
-    console.log(recorder);
     recorder.ondataavailable = (event) => {
         console.log("recording finished");
-        console.log(event.data);
         videoFile = URL.createObjectURL(event.data);
         video.srcObject = null;
         video.src = videoFile;
         video.loop = true;
-        video.play();
+        video.addEventListener("loadedmetadata", () => {
+            video.currentTime = 0;
+            video.play();
+        });
     };
     recorder.start();
+    startTimer();
+};
+
+const formatTime = (sec) => {
+    const mins = String(Math.floor(sec / 60)).padStart(2, "0");
+    const secs = String(sec % 60).padStart(2, "0");
+    return `${mins}:${secs}`;
+};
+
+const startTimer = () => {
+    seconds = 0;
+    const timerElement = document.getElementById("recordingTimer");
+    timerElement.innerHTML = `<span class="dot"></span> REC ${formatTime(seconds)}`;
+    timerInterval = setInterval(() => {
+        seconds++;
+        timerElement.innerHTML = `<span class="dot"></span> REC ${formatTime(seconds)}`;
+    }, 1000);
+    
+};
+
+const stopTimer = () => {
+    clearInterval(timerInterval);
+    const timerElement = document.getElementById("recordingTimer");
+    timerElement.innerHTML = "";
 };
 
 const init = async () => {
     stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
-    video.srcObject = stream;
-    video.play();
+    video.srcObject = null;
 };
 
 init();

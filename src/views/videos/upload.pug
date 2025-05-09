@@ -6,6 +6,7 @@ block content
             .video-section
                 h2 Upload Preview
                 video#preview(class="video-preview", controls)
+                div#recordingTimer 0s
                 button#actionBtn Start Recording
                 if errorMessage
                     span.error-message= errorMessage
@@ -13,26 +14,26 @@ block content
             .form-section
                 form(method="POST", enctype="multipart/form-data")
                     h2.upload-form-title Upload Your Video
-
-                    label(for="video") Video File
-                    input(type="file", accept="video/*", name="video", id="video", required)
-
-                    label(for="thumb") Thumbnail File
-                    input(type="file", accept="image/*", name="thumb", id="thumb", required)
-
-                    label(for="title") Title
-                    input(type="text", name="title", placeholder="Enter a title", required, maxlength="80")
-
-                    label(for="description") Description
-                    textarea#description(name="description", placeholder="Write a description", required, minlength="20")
-
-                    label(for="hashtags") Hashtags
-                    input(type="text", name="hashtags", placeholder="#funny, #vlog", required)
+                    .form-group
+                        label(for="video") Video File
+                        input(type="file", accept="video/*", name="video", id="video", required)
+                    .form-group
+                        label(for="thumb") Thumbnail File
+                        input(type="file", accept="image/*", name="thumb", id="thumb", required)
+                    .form-group
+                        label(for="title") Title
+                        input(type="text", name="title", placeholder="Enter a title", required, maxlength="80")
+                    .form-group
+                        label(for="description") Description
+                        textarea#description(name="description", placeholder="Write a description", required, minlength="20")
+                    .form-group
+                        label(for="hashtags") Hashtags
+                        input(type="text", name="hashtags", placeholder="#funny, #vlog", required)
 
                     label(for="uploadProgress") Upload Progress
                     progress#uploadProgress(value="0", max="100") 0%
-
-                    input(type="submit", value="Upload Video")
+                    .form-group
+                        input(type="submit", value="Upload Video")
 
 block scripts
     script(src="/assets/js/recorder.js")

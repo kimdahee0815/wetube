@@ -9,6 +9,9 @@ block content
                 label(for="video") Video
                 input(type="file", id="video", name="video", accept="video/*")
             .form-group
+                label(for="thumb") Thumbnail
+                input(type="file", accept="image/*", name="thumb", id="thumb")
+            .form-group
                 label(for="title") Title
                 input(type="text", placeholder=video.title, name="title", id="title", value=video.title, required, maxlength=80)
             .form-group

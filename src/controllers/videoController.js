@@ -40,17 +40,18 @@ export const getEdit = async (req, res) => {
 };
 
 export const postEdit = async (req, res) => {
-    const file = req.file;
-    const { id } = req.params;
+     const { id } = req.params;
     const {
         user: { _id },
     } = req.session;
     const video = await Video.findById(id).populate("owner");
     const { title, description, hashtags } = req.body;
-    console.log(video);
+    const { video: videoFile, thumb: thumbFile } = req.files;
+
     if (!video) {
         return res.status(404).render("404", { pageTitle: "Video Not Found" });
     }
+
     if (String(video.owner._id) !== String(_id)) {
         req.flash("error", "You are not the owner of the video");
         return res.status(403).redirect("/");
@@ -59,14 +60,11 @@ export const postEdit = async (req, res) => {
     await Video.findByIdAndUpdate(id, {
         title,
         description,
-        fileUrl: file ? file.location : video.fileUrl,
+        fileUrl: videoFile ? videoFile[0].location : video.fileUrl,
+        thumbUrl: thumbFile ? thumbFile[0].location : video.thumbUrl,
         hashtags: Video.formatHashtags(hashtags),
     });
 
-    // video.title = title;
-    // video.description = description;
-    // video.hashtags = hashtags.split(",").map((word) => (word.startsWith("#") ? word.trim() : `#${word.trim()}`));
-    // await video.save();
     req.flash("success", "Changes Done!");
     return res.redirect(`/videos/${id}`);
 };

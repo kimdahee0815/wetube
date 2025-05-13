@@ -59,7 +59,7 @@ export const postEdit = async (req, res) => {
     await Video.findByIdAndUpdate(id, {
         title,
         description,
-        fileUrl: file ? file.path : video.fileUrl,
+        fileUrl: file ? file.location : video.fileUrl,
         hashtags: Video.formatHashtags(hashtags),
     });
 

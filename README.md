@@ -54,6 +54,6 @@ A full-stack video streaming platform inspired by YouTube, developed using **Nod
 
 ## 🖼 Preview
 
-
+![Preview](./wetube-gif.gif)
 
 ---

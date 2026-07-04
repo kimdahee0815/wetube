@@ -3,15 +3,13 @@ header
         i.fab.fa-youtube
         span.logo__text  Wetube
     
-    form.search__form(method="GET", action="/search")
-        input(type="text", name="keyword", placeholder="Search by title")
-        button
-            i.fas.fa-search
-    nav     
+    nav.header__nav
         ul  
-            li 
-                a(href="javascript:void(0);" class="search-toggle") 
+            li.search__wrapper
+                a(href="javascript:void(0);").search-toggle
                     i.fas.fa-search
+                form.search__form(method="GET", action="/search")
+                    input(type="text", name="keyword", placeholder="Search by title")
             if loggedIn
                 li
                     a.header__nav-link(href="/videos/upload") Upload A Video
@@ -25,9 +23,8 @@ header
                             span 😊
                         else 
                             img.header_avatar(src=`${loggedInUser.avatarUrl}`)
-                        
             else
                 li 
                     a.header__nav-link(href="/login") Login
                 li 
-                    a.header__nav-link(href="/join").header__btn Join        
+                    a.header__nav-link(href="/join").header__btn Join
